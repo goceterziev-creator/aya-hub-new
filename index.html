@@ -6,13 +6,878 @@
     <title>GBT PRO AI Travel - Интелигентни пътувания</title>
     <meta name="description" content="AI-базирана платформа за персонализирани пътувания. Откривай, планирай и резервирай с изкуствен интелект.">
     <meta name="keywords" content="пътувания, AI, изкуствен интелект, ваканции, хотели, полети">
-    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Вграден CSS - работи ВЕДНАГА -->
     <style>
-        /* Временни стилове докато се зареди CSS */
-        body { margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        .navbar { background: rgba(255, 255, 255, 0.95); padding: 1rem 0; position: fixed; width: 100%; top: 0; z-index: 1000; }
-        .hero { height: 100vh; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 2rem; }
-        .btn { display: inline-block; padding: 12px 30px; background: #ff6b6b; color: white; text-decoration: none; border-radius: 50px; margin: 5px; }
+        /* Reset и основни стилове */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+        
+        /* Навигация */
+        .navbar {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .nav-links a:hover {
+            color: #667eea;
+        }
+        
+        /* Херо секция */
+        .hero {
+            height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 2rem;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.9), rgba(118, 75, 162, 0.9));
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Бутони */
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            background: #ff6b6b;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            margin: 8px;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+        }
+        
+        .btn:hover {
+            background: #ff5252;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 107, 107, 0.4);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid white;
+        }
+        
+        .btn-secondary:hover {
+            background: white;
+            color: #667eea;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+        
+        /* Секции */
+        .section {
+            padding: 80px 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-white {
+            background: white;
+            border-radius: 20px;
+            margin: 40px auto;
+            padding: 4rem 3rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .section h2 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+        
+        .section-white h2 {
+            color: #667eea;
+        }
+        
+        /* Features */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid #f0f0f0;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .feature-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .feature-card h3 {
+            color: #333;
+            margin-bottom: 1rem;
+            font-size: 1.6rem;
+        }
+        
+        .feature-card p {
+            color: #666;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+        
+        /* AI Chat Widget */
+        .ai-chat-widget {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+        
+        .chat-toggle {
+            width: 70px;
+            height: 70px;
+            background: #667eea;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s ease;
+            color: white;
+        }
+        
+        .chat-toggle:hover {
+            transform: scale(1.1);
+            background: #5a6fd8;
+            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.5);
+        }
+        
+        .chat-container {
+            position: absolute;
+            bottom: 90px;
+            right: 0;
+            width: 380px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+            display: none;
+            flex-direction: column;
+            height: 500px;
+            overflow: hidden;
+        }
+        
+        .chat-container.active {
+            display: flex;
+        }
+        
+        .chat-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1.2rem;
+            border-radius: 20px 20px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .chat-header h4 {
+            margin: 0;
+            font-size: 1.3rem;
+        }
+        
+        .close-chat {
+            cursor: pointer;
+            font-size: 2rem;
+            line-height: 1;
+        }
+        
+        .chat-messages {
+            flex: 1;
+            padding: 1.5rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            background: #f8f9ff;
+        }
+        
+        .message {
+            padding: 1rem 1.2rem;
+            border-radius: 18px;
+            max-width: 85%;
+            line-height: 1.5;
+            font-size: 1rem;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .ai-message {
+            background: white;
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid #667eea;
+        }
+        
+        .user-message {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+            box-shadow: 0 3px 10px rgba(102, 126, 234, 0.3);
+        }
+        
+        .chat-input {
+            display: flex;
+            padding: 1.2rem;
+            border-top: 1px solid #eee;
+            gap: 0.8rem;
+            background: white;
+        }
+        
+        .chat-input input {
+            flex: 1;
+            padding: 1rem 1.2rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 25px;
+            outline: none;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .chat-input input:focus {
+            border-color: #667eea;
+        }
+        
+        .chat-input button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+        
+        .chat-input button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        /* Дестинации */
+        .destinations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .destination-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .destination-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .destination-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+        
+        .destination-info {
+            padding: 1.5rem;
+        }
+        
+        .destination-info h3 {
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-size: 1.4rem;
+        }
+        
+        .destination-info p {
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+        
+        .price {
+            display: inline-block;
+            background: #ff6b6b;
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        /* Отзиви */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .testimonial-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid #667eea;
+        }
+        
+        .rating {
+            color: #ffd700;
+            font-size: 1.4rem;
+            margin-bottom: 1.2rem;
+        }
+        
+        .testimonial-card p {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            color: #555;
+            line-height: 1.7;
+            font-size: 1.05rem;
+        }
+        
+        .client-info {
+            display: flex;
+            flex-direction: column;
+            border-top: 1px solid #eee;
+            padding-top: 1rem;
+        }
+        
+        .client-info strong {
+            color: #333;
+            font-size: 1.1rem;
+        }
+        
+        .client-info span {
+            color: #667eea;
+            font-size: 0.95rem;
+        }
+        
+        /* Цени */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .pricing-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transition: transform 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .pricing-card.featured {
+            border-color: #667eea;
+            transform: scale(1.05);
+        }
+        
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+        
+        .popular {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #667eea;
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+        
+        .pricing-card h3 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: #333;
+            font-size: 1.8rem;
+        }
+        
+        .pricing-card .price {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 2rem;
+        }
+        
+        .pricing-card .price span {
+            font-size: 1rem;
+            color: #666;
+        }
+        
+        .pricing-card ul {
+            list-style: none;
+            margin-bottom: 2.5rem;
+            flex: 1;
+        }
+        
+        .pricing-card li {
+            padding: 0.8rem 0;
+            color: #555;
+            font-size: 1.05rem;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .pricing-card li:last-child {
+            border-bottom: none;
+        }
+        
+        .btn-pricing {
+            width: 100%;
+            padding: 1.2rem;
+            font-size: 1.2rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            margin-top: auto;
+        }
+        
+        /* Контакт форма */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+        
+        .contact-info h3 {
+            color: #333;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+        
+        .contact-info p {
+            color: #666;
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
+            font-size: 1.1rem;
+        }
+        
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
+        
+        .contact-icon {
+            font-size: 1.8rem;
+            background: #667eea;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .contact-form {
+            background: #f8f9ff;
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+        
+        .form-group {
+            margin-bottom: 1.8rem;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1.2rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+        
+        .btn-submit {
+            width: 100%;
+            padding: 1.2rem;
+            font-size: 1.2rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            margin-top: 0.5rem;
+        }
+        
+        .form-message {
+            margin-top: 1.5rem;
+            padding: 1.2rem;
+            border-radius: 10px;
+            text-align: center;
+            display: none;
+            font-weight: 500;
+        }
+        
+        .form-message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            display: block;
+        }
+        
+        .form-message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            display: block;
+        }
+        
+        /* FAQ */
+        .faq-container {
+            max-width: 800px;
+            margin: 3rem auto 0;
+        }
+        
+        .faq-item {
+            background: white;
+            margin-bottom: 1.2rem;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .faq-question {
+            padding: 1.5rem;
+            background: #667eea;
+            color: white;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.1rem;
+            transition: background 0.3s;
+        }
+        
+        .faq-question:hover {
+            background: #5a6fd8;
+        }
+        
+        .faq-question::after {
+            content: '+';
+            font-size: 1.8rem;
+            font-weight: normal;
+        }
+        
+        .faq-question.active::after {
+            content: '-';
+        }
+        
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: #f8f9ff;
+        }
+        
+        .faq-answer.active {
+            padding: 1.5rem;
+            max-height: 500px;
+        }
+        
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #2c3e50, #1a252f);
+            color: white;
+            padding: 4rem 2rem 2rem;
+            margin-top: 100px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-section h4 {
+            margin-bottom: 1.5rem;
+            color: #667eea;
+            font-size: 1.4rem;
+        }
+        
+        .footer-section p {
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-section a {
+            display: block;
+            color: #ccc;
+            text-decoration: none;
+            margin-bottom: 0.8rem;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-section a:hover {
+            color: #667eea;
+            transform: translateX(5px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+        }
+        
+        .current-date {
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            color: #bbb;
+        }
+        
+        /* Адаптивен дизайн */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1.2rem;
+                padding: 1rem;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.1rem;
+                padding: 0 1rem;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .btn {
+                width: 250px;
+                text-align: center;
+            }
+            
+            .section {
+                padding: 60px 1rem;
+            }
+            
+            .section-white {
+                padding: 3rem 1.5rem;
+                margin: 20px auto;
+            }
+            
+            .features-grid,
+            .destinations-grid,
+            .testimonials-grid,
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .chat-container {
+                width: calc(100vw - 40px);
+                right: 20px;
+                bottom: 100px;
+            }
+            
+            .pricing-card.featured {
+                transform: none;
+            }
+            
+            .pricing-card.featured:hover {
+                transform: translateY(-10px);
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 2rem;
+            }
+        }
+        
+        /* Анимации */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero-content > * {
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        .hero-content h1 {
+            animation-delay: 0.2s;
+        }
+        
+        .hero-content p {
+            animation-delay: 0.4s;
+        }
+        
+        .cta-buttons {
+            animation-delay: 0.6s;
+        }
+        
+        /* Скрол анимации */
+        .feature-card, .destination-card, .testimonial-card, .pricing-card {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .feature-card.visible, .destination-card.visible, 
+        .testimonial-card.visible, .pricing-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body>
@@ -35,7 +900,7 @@
     <section class="hero" id="home">
         <div class="hero-content">
             <h1>Открийте света с AI</h1>
-            <p>Персонализирани пътувания, интелигентни препоръки, незабравими преживявания</p>
+            <p>Персонализирани пътувания, интелигентни препоръки, незабравими преживявания. Нашата AI платформа създава перфектния план за вашето следващо приключение.</p>
             <div class="cta-buttons">
                 <a href="#contact-form" class="btn">Започнете сега</a>
                 <a href="#features" class="btn btn-secondary">Научете повече</a>
@@ -53,11 +918,11 @@
             </div>
             <div class="chat-messages" id="chatMessages">
                 <div class="message ai-message">
-                    Здравейте! 👋 Аз съм вашият AI асистент за пътувания. Мога да ви помогна с планиране на ваканция, препоръки за дестинации или всякакви въпроси за пътуване!
+                    👋 Здравейте! Аз съм вашият AI асистент за пътувания. Мога да ви помогна с планиране на ваканция, препоръки за дестинации или всякакви въпроси за пътуване! Попитайте ме нещо!
                 </div>
             </div>
             <div class="chat-input">
-                <input type="text" id="chatInput" placeholder="Попитайте ме за пътуване...">
+                <input type="text" id="chatInput" placeholder="Попитайте ме за пътуване..." maxlength="200">
                 <button id="sendMessage">▶</button>
             </div>
         </div>
@@ -70,69 +935,69 @@
             <div class="feature-card">
                 <div class="feature-icon">🤖</div>
                 <h3>AI Планиране</h3>
-                <p>Интелигентно планиране на пътувания базирано на вашите предпочитания и бюджет</p>
+                <p>Интелигентно планиране на пътувания базирано на вашите предпочитания, бюджет и интереси. Персонализирани маршрути за всеки пътешественик.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">⚡</div>
                 <h3>Мгновени оферти</h3>
-                <p>Най-добрите цени за полети, хотели и дейности в реално време</p>
+                <p>Най-добрите цени за полети, хотели и дейности в реално време. Сравняваме хиляди опции за секунди.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">🌎</div>
                 <h3>Глобално покритие</h3>
-                <p>Дестинации по целия свят с локални препоръки и съвети</p>
+                <p>Дестинации по целия свят с локални препоръки и съвети. От екзотични плажове до културни столици.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">🔒</div>
                 <h3>Сигурност</h3>
-                <p>Напълно защитена платформа с гарантирана поверителност на данните</p>
+                <p>Напълно защитена платформа с гарантирана поверителност на данните. Вашата информация е в безопасни ръце.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">📱</div>
-                <h3>Мобилна приложба</h3>
-                <p>Пътувайте с увереност с нашето мобилно приложение</p>
+                <h3>Мобилно приложение</h3>
+                <p>Пътувайте с увереност с нашето мобилно приложение. Всички планирания в джоба ви.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon">💬</div>
                 <h3>24/7 Поддръжка</h3>
-                <p>Винаги на разположение да ви помогнем по време на пътуването</p>
+                <p>Винаги на разположение да ви помогнем по време на пътуването. Денонощна помощ на всякакви езици.</p>
             </div>
         </div>
     </section>
 
     <!-- Destinations Gallery -->
     <section class="section" id="destinations">
-        <h2>Популярни Дестинации</h2>
+        <h2>Популярни Дестинации за 2025</h2>
         <div class="destinations-grid">
             <div class="destination-card">
-                <img src="https://images.unsplash.com/photo-1523531294919-4bcd7c65e216?w=400" alt="Париж">
+                <img src="https://images.unsplash.com/photo-1523531294919-4bcd7c65e216?w=400&h=220&fit=crop" alt="Париж, Франция">
                 <div class="destination-info">
                     <h3>Париж, Франция</h3>
-                    <p>Градът на любовта и светлината</p>
+                    <p>Градът на любовта и светлината. Перфектен за романтични уикенди.</p>
                     <span class="price">от €450</span>
                 </div>
             </div>
             <div class="destination-card">
-                <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=400" alt="Тайланд">
+                <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=400&h=220&fit=crop" alt="Пукет, Тайланд">
                 <div class="destination-info">
                     <h3>Пукет, Тайланд</h3>
-                    <p>Тропически рай с бистри води</p>
+                    <p>Тропически рай с бистри води и екзотична култура.</p>
                     <span class="price">от €680</span>
                 </div>
             </div>
             <div class="destination-card">
-                <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=400" alt="Токио">
+                <img src="https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=400&h=220&fit=crop" alt="Токио, Япония">
                 <div class="destination-info">
                     <h3>Токио, Япония</h3>
-                    <p>Съвременна технология и древна култура</p>
+                    <p>Съвременна технология и древна култура в перфектен хармония.</p>
                     <span class="price">от €720</span>
                 </div>
             </div>
             <div class="destination-card">
-                <img src="https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=400" alt="Малдиви">
+                <img src="https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=400&h=220&fit=crop" alt="Малдиви">
                 <div class="destination-info">
                     <h3>Малдиви</h3>
-                    <p>Рай за нуркачи и меден месец</p>
+                    <p>Рай за нуркачи и меден месец. Кристални води и бели плажове.</p>
                     <span class="price">от €890</span>
                 </div>
             </div>
@@ -145,26 +1010,26 @@
         <div class="testimonials-grid">
             <div class="testimonial-card">
                 <div class="rating">★★★★★</div>
-                <p>"AI планирането спести часове изследване. Всичко беше перфектно организирано!"</p>
+                <p>"AI планирането спести часове изследване. Всичко беше перфектно организирано - от полети до ресторанти. Невероятно преживяване!"</p>
                 <div class="client-info">
-                    <strong>Мария И.</strong>
-                    <span>Испания ваканция</span>
+                    <strong>Мария Иванова</strong>
+                    <span>Испания ваканция, Юни 2025</span>
                 </div>
             </div>
             <div class="testimonial-card">
                 <div class="rating">★★★★★</div>
-                <p>"Препоръките за ресторанти бяха точно това, което търсех. Незабравимо преживяване!"</p>
+                <p>"Препоръките за ресторанти и забележителности бяха точно това, което търсех. Успяха да намерят скрити бисери, които не бях открила сама."</p>
                 <div class="client-info">
-                    <strong>Иван П.</strong>
-                    <span>Тайланд приключение</span>
+                    <strong>Иван Петров</strong>
+                    <span>Тайланд приключение, Март 2025</span>
                 </div>
             </div>
             <div class="testimonial-card">
                 <div class="rating">★★★★☆</div>
-                <p>"Бърза и точна помощ при промяна на полет. Професионално обслужване."</p>
+                <p>"Бърза и точна помощ при промяна на полет поради непредвидени обстоятелства. Професионално обслужване и грижа за клиента."</p>
                 <div class="client-info">
-                    <strong>Елена К.</strong>
-                    <span>Италия културен тур</span>
+                    <strong>Елена Кирова</strong>
+                    <span>Италия културен тур, Април 2025</span>
                 </div>
             </div>
         </div>
@@ -172,7 +1037,7 @@
 
     <!-- Pricing Section -->
     <section class="section" id="pricing">
-        <h2>Цени и Пакети</h2>
+        <h2>Цени и Пакети за 2025</h2>
         <div class="pricing-grid">
             <div class="pricing-card">
                 <h3>Базов</h3>
@@ -182,8 +1047,9 @@
                     <li>✓ Основни препоръки</li>
                     <li>✓ До 3 дестинации</li>
                     <li>✓ Имейл поддръжка</li>
+                    <li>✓ Базови анализи</li>
                 </ul>
-                <button class="btn btn-pricing">Избери</button>
+                <button class="btn btn-pricing">Избери Базов</button>
             </div>
             <div class="pricing-card featured">
                 <div class="popular">Най-популярен</div>
@@ -195,8 +1061,9 @@
                     <li>✓ Неограничени дестинации</li>
                     <li>✓ Приоритетна поддръжка</li>
                     <li>✓ Мобилно приложение</li>
+                    <li>✓ Групови отстъпки</li>
                 </ul>
-                <button class="btn btn-pricing">Избери</button>
+                <button class="btn btn-pricing">Избери Професионален</button>
             </div>
             <div class="pricing-card">
                 <h3>Бизнес</h3>
@@ -206,9 +1073,10 @@
                     <li>✓ Групови пътувания</li>
                     <li>✓ VIP услуги</li>
                     <li>✓ 24/7 експресна поддръжка</li>
-                    <li>✓ Анализи и отчети</li>
+                    <li>✓ Детайлни анализи и отчети</li>
+                    <li>✓ Консиерж услуги</li>
                 </ul>
-                <button class="btn btn-pricing">Избери</button>
+                <button class="btn btn-pricing">Избери Бизнес</button>
             </div>
         </div>
     </section>
@@ -219,7 +1087,7 @@
         <div class="contact-container">
             <div class="contact-info">
                 <h3>Нека започнем вашето приключение</h3>
-                <p>Разкажете ни за вашите мечти за пътуване и нашият AI ще ви подготви персонализиран план!</p>
+                <p>Разкажете ни за вашите мечти за пътуване и нашият AI ще ви подготви персонализиран план! Работим с индивидуални пътешественики, двойки и цели групи.</p>
                 <div class="contact-details">
                     <div class="contact-item">
                         <span class="contact-icon">📧</span>
@@ -239,7 +1107,7 @@
                         <span class="contact-icon">📍</span>
                         <div>
                             <strong>Адрес</strong>
-                            <p>София, България</p>
+                            <p>бул. "Цар Борис III" 136, София</p>
                         </div>
                     </div>
                 </div>
@@ -252,10 +1120,13 @@
                     <input type="email" id="email" placeholder="Вашият имейл" required>
                 </div>
                 <div class="form-group">
+                    <input type="tel" id="phone" placeholder="Вашият телефон (по избор)">
+                </div>
+                <div class="form-group">
                     <input type="text" id="destination" placeholder="Желана дестинация">
                 </div>
                 <div class="form-group">
-                    <textarea id="message" placeholder="Разкажете ни за вашето мечтано пътуване..." rows="5" required></textarea>
+                    <textarea id="message" placeholder="Разкажете ни за вашето мечтано пътуване... Кога, с кого, какъв бюджет имате?" rows="5" required></textarea>
                 </div>
                 <button type="submit" class="btn btn-submit">Изпрати запитване</button>
                 <div class="form-message" id="formMessage"></div>
@@ -268,16 +1139,24 @@
         <h2>Често Задавани Въпроси</h2>
         <div class="faq-container">
             <div class="faq-item">
-                <div class="faq-question">Как работи AI планирането?</div>
-                <div class="faq-answer">Нашият AI анализира вашите предпочитания, бюджет и интереси, след което генерира персонализиран маршрут с най-добрите оферти.</div>
+                <div class="faq-question">Как работи AI планирането на пътувания?</div>
+                <div class="faq-answer">Нашият AI анализира вашите предпочитания, бюджет, интереси и времеви рамки. След това генерира персонализиран маршрут с най-добрите оферти за полети, настаняване и дейности, като взема предвид сезонност, метеорологични условия и актуални събития.</div>
             </div>
             <div class="faq-item">
-                <div class="faq-question">Колко време отнема да получа план?</div>
-                <div class="faq-answer">Обикновено в рамките на 2-4 часа, в зависимост от сложността на пътуването.</div>
+                <div class="faq-question">Колко време отнема да получа готов план за пътуване?</div>
+                <div class="faq-answer">Обикновено в рамките на 2-4 часа получавате първоначален план. За по-сложни пътувания с много дестинации може да отнеме до 24 часа. Винаги имате възможност за обратна връзка и корекции.</div>
             </div>
             <div class="faq-item">
-                <div class="faq-question">Мога ли да променя плана?</div>
-                <div class="faq-answer">Да, можете да правите неограничени промени преди финално потвърждение.</div>
+                <div class="faq-question">Мога ли да променя плана след като го получа?</div>
+                <div class="faq-answer">Да, можете да правите неограничени промени преди финално потвърждение. След потвърждаване на резервациите, промените са възможни в зависимост от условията на доставчиците.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Работите ли с групови пътувания?</div>
+                <div class="faq-answer">Да, специално за групови пътувания предлагаме персонализирани решения с групови отстъпки, координиране на транспорт и настаняване, както и специални групови активности.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Какво се случва ако има проблем по време на пътуването?</div>
+                <div class="faq-answer">Имаме 24/7 поддръжка на български и английски език. При всякакви проблеми - закъснял полет, проблеми с хотела или други непредвидени ситуации, нашият екип е на разположение да ви помогне незабавно.</div>
             </div>
         </div>
     </section>
@@ -287,33 +1166,328 @@
         <div class="footer-content">
             <div class="footer-section">
                 <h4>GBT PRO AI Travel</h4>
-                <p>Интелигентни решения за интелигентни пътници</p>
+                <p>Интелигентни решения за интелигентни пътници. Променяме начина, по който пътувате.</p>
+                <p>⏰ Работно време: Понеделник-Петък 9:00-18:00</p>
             </div>
             <div class="footer-section">
-                <h4>Връзки</h4>
+                <h4>Бързи връзки</h4>
                 <a href="#home">Начало</a>
                 <a href="#features">Услуги</a>
                 <a href="#destinations">Дестинации</a>
+                <a href="#pricing">Цени</a>
+                <a href="#contact-form">Контакт</a>
             </div>
             <div class="footer-section">
                 <h4>Поддръжка</h4>
-                <a href="#contact-form">Контакт</a>
-                <a href="#faq">ЧЗВ</a>
-                <a href="#pricing">Цени</a>
+                <a href="#faq">Често задавани въпроси</a>
+                <a href="#">Условия за ползване</a>
+                <a href="#">Политика за поверителност</a>
+                <a href="#">Защита на данните</a>
+                <a href="#">Помощ и поддръжка</a>
             </div>
             <div class="footer-section">
-                <h4>Свържете се</h4>
-                <p>📧 info@gbtprotravel.com</p>
-                <p>📞 +359 888 123 456</p>
-                <p>📍 София, България</p>
+                <h4>Свържете се с нас</h4>
+                <p>📧 Имейл: info@gbtprotravel.com</p>
+                <p>📞 Телефон: +359 888 123 456</p>
+                <p>📍 Адрес: София, България</p>
+                <p>💼 Булстат: 123456789</p>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 GBT PRO AI Travel. Всички права запазени.</p>
-            <p class="current-date">Актуално към: <span id="currentDate">15.12.2025</span></p>
+            <p>&copy; 2025 GBT PRO AI Travel. Всички права запазени. Всички цени са в евро и включват ДДС.</p>
+            <p class="current-date">Актуално към: <span id="currentDate">15.12.2025</span> | Версия: 2.5.1</p>
         </div>
     </footer>
 
-    <script src="js/script.js"></script>
+    <!-- JavaScript -->
+    <script>
+        // Функция за обновяване на датата
+        function updateCurrentDate() {
+            const today = new Date();
+            const day = String(today.getDate()).padStart(2, '0');
+            const month = String(today.getMonth() + 1).padStart(2, '0');
+            const year = today.getFullYear();
+            
+            const currentDateElement = document.getElementById('currentDate');
+            if (currentDateElement) {
+                currentDateElement.textContent = `${day}.${month}.${year}`;
+            }
+            
+            // Обновяване на годината във футъра
+            const copyrightElements = document.querySelectorAll('.footer-bottom p:first-child');
+            copyrightElements.forEach(element => {
+                element.textContent = element.textContent.replace(/2024|2025/g, year);
+            });
+        }
+
+        // Smooth scrolling for navigation links
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 GBT PRO AI Travel зареден успешно!');
+            
+            // Обновяване на датата
+            updateCurrentDate();
+            
+            // Navigation
+            const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    if (targetSection) {
+                        window.scrollTo({
+                            top: targetSection.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+
+            // Navbar background on scroll
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 100) {
+                    navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                } else {
+                    navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                }
+                
+                // Scroll animations
+                const cards = document.querySelectorAll('.feature-card, .destination-card, .testimonial-card, .pricing-card');
+                cards.forEach(card => {
+                    const cardTop = card.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (cardTop < windowHeight - 100) {
+                        card.classList.add('visible');
+                    }
+                });
+            });
+
+            // AI Chat Widget
+            const chatToggle = document.querySelector('.chat-toggle');
+            const chatContainer = document.querySelector('.chat-container');
+            const closeChat = document.querySelector('.close-chat');
+            const chatInput = document.getElementById('chatInput');
+            const sendMessage = document.getElementById('sendMessage');
+            const chatMessages = document.getElementById('chatMessages');
+
+            if (chatToggle && chatContainer) {
+                chatToggle.addEventListener('click', function() {
+                    chatContainer.classList.toggle('active');
+                    if (chatContainer.classList.contains('active')) {
+                        chatInput.focus();
+                    }
+                });
+            }
+
+            if (closeChat) {
+                closeChat.addEventListener('click', function() {
+                    chatContainer.classList.remove('active');
+                });
+            }
+
+            // AI Responses
+            const aiResponses = [
+                "Разбирам, че търсите информация за пътуване за 2025! Мога да ви препоръчам няколко страхотни дестинации базирани на вашите интереси.",
+                "За да ви подготвя перфектния план, моля кажете ми: Какъв е вашият бюджет? Предпочитате плаж, планини или градски туризъм?",
+                "Страхотен избор! За 2025 имам специални оферти за тази дестинация. Кога планирате да пътувате и за колко дни?",
+                "На базата на вашите предпочитания, мога да ви предложа пълен пакет включващ полети, хотел и екскурзии. Искате ли да продължим?",
+                "За вашия бюджет през 2025 има няколко отлични опции. Имаме и ранни резервации с до 30% отстъпка!",
+                "Разбирам, че пътувате с група. Мога да ви предложа групови отстъпки и специални активности за групи.",
+                "Тази дестинация е перфектна за 2025! Климатът ще бъде идеален за посещение през избрания от вас период.",
+                "Имам няколко скрити бисера за тази дестинация - малко известни места, които си струва да посетите през 2025!",
+                "Въз основа на тенденциите за 2025, препоръчвам да включите и тези забележителности в маршрута.",
+                "Мога да ви подготвя пълен дневен план за ваканцията. Искате ли да го получавате? Ще включа всички детайли!"
+            ];
+
+            function addMessage(message, isUser = false) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `message ${isUser ? 'user-message' : 'ai-message'}`;
+                messageDiv.textContent = message;
+                chatMessages.appendChild(messageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            function getAIResponse() {
+                const randomIndex = Math.floor(Math.random() * aiResponses.length);
+                return aiResponses[randomIndex];
+            }
+
+            if (sendMessage && chatInput) {
+                sendMessage.addEventListener('click', function() {
+                    const message = chatInput.value.trim();
+                    if (message) {
+                        addMessage(message, true);
+                        chatInput.value = '';
+                        
+                        // Simulate AI thinking
+                        setTimeout(() => {
+                            addMessage(getAIResponse());
+                        }, 800);
+                    }
+                });
+
+                chatInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        sendMessage.click();
+                    }
+                });
+            }
+
+            // Contact Form
+            const contactForm = document.getElementById('contactForm');
+            const formMessage = document.getElementById('formMessage');
+
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const name = document.getElementById('name').value;
+                    const email = document.getElementById('email').value;
+                    const destination = document.getElementById('destination').value;
+                    const message = document.getElementById('message').value;
+
+                    // Simple validation
+                    if (!name || !email || !message) {
+                        formMessage.textContent = '❌ Моля, попълнете всички задължителни полета!';
+                        formMessage.className = 'form-message error';
+                        formMessage.style.display = 'block';
+                        return;
+                    }
+
+                    // Email validation
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(email)) {
+                        formMessage.textContent = '❌ Моля, въведете валиден имейл адрес!';
+                        formMessage.className = 'form-message error';
+                        formMessage.style.display = 'block';
+                        return;
+                    }
+
+                    // Simulate form submission
+                    formMessage.textContent = '✅ Благодарим ви за запитването за 2025! Ще се свържем с вас в рамките на 24 часа.';
+                    formMessage.className = 'form-message success';
+                    formMessage.style.display = 'block';
+                    
+                    // Reset form
+                    contactForm.reset();
+                    
+                    // Hide message after 5 seconds
+                    setTimeout(() => {
+                        formMessage.style.display = 'none';
+                    }, 5000);
+                });
+            }
+
+            // FAQ Accordion
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', function() {
+                    const answer = this.nextElementSibling;
+                    const isActive = this.classList.contains('active');
+                    
+                    // Close all FAQ items
+                    faqQuestions.forEach(q => {
+                        q.classList.remove('active');
+                        q.nextElementSibling.classList.remove('active');
+                    });
+                    
+                    // Open clicked item if it wasn't active
+                    if (!isActive) {
+                        this.classList.add('active');
+                        answer.classList.add('active');
+                    }
+                });
+            });
+
+            // Pricing card interactions
+            const pricingButtons = document.querySelectorAll('.btn-pricing');
+            
+            pricingButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const plan = this.closest('.pricing-card').querySelector('h3').textContent;
+                    
+                    // Open chat and send message
+                    if (chatContainer) {
+                        chatContainer.classList.add('active');
+                        
+                        // Add user message
+                        addMessage(`Интересувам се от ${plan} план за 2025. Можете ли да ми дадете повече информация?`, true);
+                        
+                        // AI response
+                        setTimeout(() => {
+                            addMessage(`Разбира се! ${plan} план за 2025 включва всички функции плюс нови ексклузивни оферти. Имате ли конкретни дати за пътуване или специални изисквания?`);
+                        }, 800);
+                        
+                        // Focus input
+                        setTimeout(() => {
+                            chatInput.focus();
+                        }, 1000);
+                    }
+                });
+            });
+
+            // CTA Buttons
+            const ctaButtons = document.querySelectorAll('.cta-buttons .btn');
+            
+            ctaButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    if (this.getAttribute('href').startsWith('#')) {
+                        e.preventDefault();
+                        const targetId = this.getAttribute('href');
+                        const targetSection = document.querySelector(targetId);
+                        
+                        if (targetSection) {
+                            window.scrollTo({
+                                top: targetSection.offsetTop - 80,
+                                behavior: 'smooth'
+                            });
+                        }
+                    }
+                });
+            });
+
+            // Add loading animation to all buttons
+            const allButtons = document.querySelectorAll('.btn');
+            allButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 150);
+                });
+            });
+
+            // Initialize scroll animations
+            setTimeout(() => {
+                const cards = document.querySelectorAll('.feature-card, .destination-card, .testimonial-card, .pricing-card');
+                cards.forEach(card => {
+                    card.classList.add('visible');
+                });
+            }, 300);
+        });
+
+        // Additional smooth scrolling for all anchor links
+        document.addEventListener('click', function(e) {
+            if (e.target.matches('a[href^="#"]')) {
+                e.preventDefault();
+                const targetId = e.target.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                if (targetSection) {
+                    window.scrollTo({
+                        top: targetSection.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        });
+    </script>
 </body>
 </html>
