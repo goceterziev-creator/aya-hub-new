@@ -7,6 +7,13 @@
     <meta name="description" content="AI-базирана платформа за персонализирани пътувания. Откривай, планирай и резервирай с изкуствен интелект.">
     <meta name="keywords" content="пътувания, AI, изкуствен интелект, ваканции, хотели, полети">
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Временни стилове докато се зареди CSS */
+        body { margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        .navbar { background: rgba(255, 255, 255, 0.95); padding: 1rem 0; position: fixed; width: 100%; top: 0; z-index: 1000; }
+        .hero { height: 100vh; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; display: flex; align-items: center; justify-content: center; text-align: center; padding: 0 2rem; }
+        .btn { display: inline-block; padding: 12px 30px; background: #ff6b6b; color: white; text-decoration: none; border-radius: 50px; margin: 5px; }
+    </style>
 </head>
 <body>
     <!-- Навигация -->
@@ -146,7 +153,7 @@
             </div>
             <div class="testimonial-card">
                 <div class="rating">★★★★★</div>
-                <p>"Препоръките за ресторанти бха точно това, което търсех. Незабравимо преживяване!"</p>
+                <p>"Препоръките за ресторанти бяха точно това, което търсех. Незабравимо преживяване!"</p>
                 <div class="client-info">
                     <strong>Иван П.</strong>
                     <span>Тайланд приключение</span>
@@ -290,13 +297,20 @@
             </div>
             <div class="footer-section">
                 <h4>Поддръжка</h4>
-                <a href="#contact">Контакт</a>
+                <a href="#contact-form">Контакт</a>
                 <a href="#faq">ЧЗВ</a>
                 <a href="#pricing">Цени</a>
             </div>
+            <div class="footer-section">
+                <h4>Свържете се</h4>
+                <p>📧 info@gbtprotravel.com</p>
+                <p>📞 +359 888 123 456</p>
+                <p>📍 София, България</p>
+            </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2024 GBT PRO AI Travel. Всички права запазени.</p>
+            <p>&copy; 2025 GBT PRO AI Travel. Всички права запазени.</p>
+            <p class="current-date">Актуално към: <span id="currentDate">15.12.2025</span></p>
         </div>
     </footer>
 
